@@ -1,26 +1,24 @@
-//your JS code here. If required.
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 
-    'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 
-    'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const bands = [
+    'The Plot in You', 
+    'The Devil Wears Prada', 
+    'Pierce the Veil', 
+    'Norma Jean', 
+    'The Bled', 
+    'Say Anything', 
+    'The Midway State', 
+    'We Came as Romans', 
+    'Counterparts', 
+    'Oh, Sleeper', 
+    'A Skylit Drive', 
+    'Anywhere But Here', 
+    'An Old Dog'
+];
 
-const list = document.querySelector("#list");
+function strip(article) {
+    return article.replace(/^(a |an |the )/i, '').trim();
+}
 
-console.log(bands);
+const sortedBands = bands.sort((a, b) => strip(a).localeCompare(strip(b)));
 
-// bands.sort(); //ascending order
-const sortedBands = bands.sort((a, b) => {
-   const nameA = a.replace(/^(a | an | the)/i, "").trim().toLowerCase();
-   const nameB = b.replace(/^(a | an | the)/i, "").trim().toLowerCase();
-   return nameA.localeCompare(nameB);
-});
-//ascending order
-
-console.log(sortedBands);
-console.log(bands);
-
-sortedBands.forEach((item) => {
-    let li = document.createElement("li");
-    li.innerHTML = item;
-    list.append(li);
-})
-
+const bandList = document.querySelector("#bands");
+bandList.innerHTML = sortedBands.map(band => <li>${band}</li>).join('')
